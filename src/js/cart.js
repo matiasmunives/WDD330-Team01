@@ -16,7 +16,7 @@ function renderCartContents() {
     updateCartTotal(total);
   } else {
     cartFooter.classList.remove("cart-has-items");
-    updateCartTotal(0); 
+    updateCartTotal(0);
   }
 }
 
@@ -41,7 +41,7 @@ function cartItemTemplate(item) {
 
 function calculateCartTotal(cartItems) {
   let total = 0;
-  
+
   cartItems.forEach((item) => {
     total += item.FinalPrice;
   });
@@ -51,9 +51,8 @@ function calculateCartTotal(cartItems) {
 
 function updateCartTotal(total) {
   const cartTotalElement = document.querySelector(".cart-total");
-  
+
   cartTotalElement.textContent = `Total: $${total}`;
 }
 
 renderCartContents();
-
