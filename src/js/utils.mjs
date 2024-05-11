@@ -25,13 +25,11 @@ export function setClick(selector, callback) {
 export function getParam(param){
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const product = urlParams.get('product');
-  return urlParams.get()
+  return urlParams.get(param);
 }
 
 export default async function productDetails(productId, selector) {
     getElementById("addToCart")
   // once we have the product details we can render out the HTML
   // add a listener to Add to Cart button
- 
 }
