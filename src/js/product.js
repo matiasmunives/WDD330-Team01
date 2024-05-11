@@ -33,6 +33,5 @@ document
   .getElementById("addToCart")
   .addEventListener("click", addToCartHandler);
 
-
-  const productId =  getParam('product');
-  productDetails(productId);
+const productId = getParam("product");
+productDetails(productId);
