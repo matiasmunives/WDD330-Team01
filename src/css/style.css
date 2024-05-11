@@ -202,6 +202,16 @@ button {
   grid-column: 3;
 }
 
+/*styles add total in cart*/
+.cart-footer .cart-total {
+  display: none;
+}
+
+.cart-footer.cart-has-items .cart-total {
+  display: block;
+}
+
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
