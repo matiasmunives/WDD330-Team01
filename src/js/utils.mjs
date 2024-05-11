@@ -29,4 +29,9 @@ export function getParam(param){
   return urlParams.get()
 }
 
-
+export default async function productDetails(productId, selector) {
+    getElementById("addToCart")
+  // once we have the product details we can render out the HTML
+  // add a listener to Add to Cart button
+ 
+}
