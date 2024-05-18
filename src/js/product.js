@@ -24,7 +24,7 @@ function addProductToCart(product) {
 async function addToCartHandler(e) {
     const product = await findProductById(e.target.dataset.id);
     addProductToCart(product);
-    alert(`${product.Name} fue añadido al carrito.`);
+    alert(`${product.Name} added to cart.`);
 }
 
 document

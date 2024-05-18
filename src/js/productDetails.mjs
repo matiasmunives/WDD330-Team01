@@ -1,5 +1,5 @@
 import { findProductById } from "./productData.mjs";
-import { setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 let product = {};
 
@@ -11,13 +11,13 @@ export default async function productDetails(productId) {
       if (product) {
       renderProductDetails();
       document.getElementById("addToCart").addEventListener("click", addToCart);
-      document.getElementById("addToCart").style.display = 'block'; // Show add button
+      document.getElementById("addToCart").style.display = "block"; // Show add button
       } else {
-          throw new Error('Product not found'); // Throw error if product doesn't exist
+          throw new Error("Product not found"); // Throw error if product doesn't exist
       }
   } catch (error) {
       console.error(error);
-      document.getElementById("addToCart").style.display = 'none'; // Hide add button
+      document.getElementById("addToCart").style.display = "none"; // Hide add button
       // Display error message to user
       document.getElementById("productDetail").innerHTML = `<p>Error: ${error.message}</p>`;
   }
@@ -25,13 +25,10 @@ export default async function productDetails(productId) {
 
 function addToCart() {
   let cartItems = getLocalStorage("so-cart") || [];
-
   if (!Array.isArray(cartItems)) {
     cartItems = [];
   }
-  
-  const existingItemIndex = cartItems.findIndex((item) => item.Id === product.Id);
-
+    const existingItemIndex = cartItems.findIndex((item) => item.Id === product.Id);
   if (existingItemIndex !== -1) {
     cartItems[existingItemIndex].quantity += 1;
   } else {
