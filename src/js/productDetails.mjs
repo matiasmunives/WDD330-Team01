@@ -36,7 +36,7 @@ function addToCart() {
   }
 
   setLocalStorage("so-cart", cartItems);
-  alert(`${product.Name} add to cart.`);
+  alert(`${product.Name} added to cart.`);
 }
 
 function renderProductDetails() {
