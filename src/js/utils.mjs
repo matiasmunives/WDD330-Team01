@@ -22,14 +22,16 @@ export function setClick(selector, callback) {
   qs(selector).addEventListener("click", callback);
 }
 
-export function getParam(param){
+export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   return urlParams.get(param);
 }
 
-export default async function productDetails(productId, selector) {
-    getElementById("addToCart")
-  // once we have the product details we can render out the HTML
-  // add a listener to Add to Cart button
+export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = true){
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
+  const htmlString = list.map(templateFn);
+  parentElement.insertAdjacentHTML(position, htmlString.join(""));
 }
