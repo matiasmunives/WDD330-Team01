@@ -33,3 +33,22 @@ export default async function productDetails(productId, selector) {
   // once we have the product details we can render out the HTML
   // add a listener to Add to Cart button
 }
+
+export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = true){
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
+  const htmlString = list.map(templateFn);
+  parentElement.insertAdjacentHTML(position, htmlString.join(""));
+}
+
+export function renderWithTemplate(templateFn, parentElement, data, callback, position = "afterbegin", clear = true){
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
+  parentElement.insertAdjacentHTML(position, template);
+  if(callback) {
+    callback(data);
+  }
+}
+
