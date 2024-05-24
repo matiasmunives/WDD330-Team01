@@ -60,6 +60,36 @@ export function renderWithTemplate(templateFn, parentElement, data, callback, po
     callback(data);
   }
 }
+function loadTemplate(path) {
+  return async function () {
+      const res = await fetch(path);
+      if (res.ok) {
+      const html = await res.text();
+      return html;
+      }
+  };
+} 
+
+function loadHeaderFooter() {
+  try {
+    // Load the header and footer templates
+    const headerTemplate = await loadTemplate('/path/to/header.html'); // Adjust the path as needed
+    const footerTemplate = await loadTemplate('/path/to/footer.html'); // Adjust the path as needed
+
+    // Grab the header and footer elements from the DOM
+    const headerElement = document.querySelector('header');
+    const footerElement = document.querySelector('footer');
+
+    // Render the header and footer templates
+    renderWithTemplate(headerTemplate, headerElement);
+    renderWithTemplate(footerTemplate, footerElement);
+} catch (error) {
+    console.error('Error loading header or footer:', error);
+}
+}
+export { loadHeaderFooter };
+
+
 
 
 
