@@ -1,5 +1,5 @@
-import { loadHeaderFooter } from './utils.mjs'; 
+import productList from "./productList.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
 
-document.addEventListener('DOMContentLoaded', () => {
-    loadHeaderFooter();
-});
+loadHeaderFooter();
+productList(".product-list", "tents");

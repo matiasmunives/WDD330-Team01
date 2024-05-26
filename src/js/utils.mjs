@@ -5,7 +5,7 @@ export function qs(selector, parent = document) {
 // or a more concise version if you are into that sort of thing:
 // export const qs = (selector, parent = document) => parent.querySelector(selector);
 
-// retrieve data from localstorage
+// retrieve data from localStorage
 export function getLocalStorage(key) {
   return JSON.parse(localStorage.getItem(key));
 }
@@ -28,11 +28,11 @@ export function getParam(param){
   return urlParams.get(param);
 }
 
-export default async function productDetails(productId, selector) {
+/*export default async function productDetails(productId, selector) {
     getElementById("addToCart")
   // once we have the product details we can render out the HTML
   // add a listener to Add to Cart button
-}
+}*/
 
 export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = true){
   if (clear) {
@@ -42,24 +42,18 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
   parentElement.insertAdjacentHTML(position, htmlString.join(""));
 }
 
-export function renderWithTemplate(templateFn, parentElement, data, callback, position = "afterbegin", clear = true) {
+export async function renderWithTemplate(templateFn, parentElement, data, callback, position = "afterbegin", clear = true) {
   if (clear) {
     parentElement.innerHTML = "";
   }
 
-  let htmlString;
-
-  if (Array.isArray(data)) {
-    
-    htmlString = data.map(templateFn).join("");
-  } else {
-    htmlString = templateFn(data);
-  }
+  const htmlString = await templateFn(data);
   parentElement.insertAdjacentHTML(position, htmlString);
   if (callback) {
     callback(data);
   }
 }
+
 function loadTemplate(path) {
   return async function () {
       const res = await fetch(path);
@@ -70,24 +64,19 @@ function loadTemplate(path) {
   };
 } 
 
-function loadHeaderFooter() {
-  try {
-    // Load the header and footer templates
-    const headerTemplate = await loadTemplate('/path/to/header.html'); // Adjust the path as needed
-    const footerTemplate = await loadTemplate('/path/to/footer.html'); // Adjust the path as needed
+export async function loadHeaderFooter() {
+    const headerTemplate = loadTemplate("/partials/header.html"); 
+    const footerTemplate = loadTemplate("/partials/footer.html");
 
     // Grab the header and footer elements from the DOM
-    const headerElement = document.querySelector('header');
-    const footerElement = document.querySelector('footer');
+    const headerElement = document.querySelector("#main-header");
+    const footerElement = document.querySelector("#main-footer");
 
     // Render the header and footer templates
     renderWithTemplate(headerTemplate, headerElement);
     renderWithTemplate(footerTemplate, footerElement);
-} catch (error) {
-    console.error('Error loading header or footer:', error);
-}
-}
-export { loadHeaderFooter };
+} 
+
 
 
 
