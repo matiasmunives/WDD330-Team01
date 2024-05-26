@@ -4,23 +4,39 @@ import { setLocalStorage, getLocalStorage } from "./utils.mjs";
 let product = {};
 
 export default async function productDetails(productId) {
-  // get the details for the current product. findProductById will return a promise! use await or .then() to process it
-  product = await findProductById(productId);
-  // once we have the product details we can render out the HTML
-  renderProductDetails();
-  // once the HTML is rendered we can add a listener to Add to Cart button
-  document.getElementById("addToCart").addEventListener("click", addToCart);
+  try {
+    // Attempt to get the product details
+      product = await findProductById(productId);
+    // Render product details and add event listener if product exists
+      if (product) {
+      renderProductDetails();
+      document.getElementById("addToCart").addEventListener("click", addToCart);
+      document.getElementById("addToCart").style.display = "block"; // Show add button
+      } else {
+          throw new Error("Product not found"); // Throw error if product doesn't exist
+      }
+  } catch (error) {
+      console.error(error);
+      document.getElementById("addToCart").style.display = "none"; // Hide add button
+      // Display error message to user
+      document.getElementById("productDetail").innerHTML = `<p>Error: ${error.message}</p>`;
+  }
 }
 
 function addToCart() {
-  let cartContents = getLocalStorage("so-cart");
-  //check to see if there was anything there
-  if (!cartContents) {
-    cartContents = [];
+  let cartItems = getLocalStorage("so-cart") || [];
+  if (!Array.isArray(cartItems)) {
+    cartItems = [];
   }
-  // then add the current product to the list
-  cartContents.push(product);
-  setLocalStorage("so-cart", cartContents);
+    const existingItemIndex = cartItems.findIndex((item) => item.Id === product.Id);
+  if (existingItemIndex !== -1) {
+    cartItems[existingItemIndex].quantity += 1;
+  } else {
+    cartItems.push({ ...product, quantity: 1 });
+  }
+
+  setLocalStorage("so-cart", cartItems);
+  alert(`${product.Name} add to cart.`);
 }
 
 
