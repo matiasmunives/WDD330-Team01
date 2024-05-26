@@ -16,7 +16,6 @@ export default async function productDetails(productId) {
           throw new Error("Product not found"); // Throw error if product doesn't exist
       }
   } catch (error) {
-      console.error(error);
       document.getElementById("addToCart").style.display = "none"; // Hide add button
       // Display error message to user
       document.getElementById("productDetail").innerHTML = `<p>Error: ${error.message}</p>`;
