@@ -232,5 +232,16 @@ footer {
 
 .category {
   display: flex;
-  
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.category div {
+  flex: 1;
+  text-align: center;
+}
+
+.category img {
+  max-width: 100px;
 }
