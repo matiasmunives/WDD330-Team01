@@ -229,3 +229,8 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+.category {
+  display: flex;
+  
+}
