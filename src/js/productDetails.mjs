@@ -22,20 +22,16 @@ export default async function productDetails(productId) {
   }
 }
 
+
 function addToCart() {
-  let cartItems = getLocalStorage("so-cart") || [];
-  if (!Array.isArray(cartItems)) {
+  let cartItems = getLocalStorage("so-cart");
+  //check if there are any content there
+  if (!cartItems) {
     cartItems = [];
   }
-    const existingItemIndex = cartItems.findIndex((item) => item.Id === product.Id);
-  if (existingItemIndex !== -1) {
-    cartItems[existingItemIndex].quantity += 1;
-  } else {
-    cartItems.push({ ...product, quantity: 1 });
-  }
-
+  // then add the current product to the list
+  cartItems.push(product);
   setLocalStorage("so-cart", cartItems);
-  alert(`${product.Name} add to cart.`);
 }
 
 
@@ -43,7 +39,7 @@ function renderProductDetails() {
   document.querySelector("#productName").innerText = product.Brand.Name;
   document.querySelector("#productNameWithoutBrand").innerText =
     product.NameWithoutBrand;
-  document.querySelector("#productImage").src = product.Image;
+  document.querySelector("#productImage").src = product.Image.PrimaryLarge;
   document.querySelector("#productImage").alt = product.Name;
   document.querySelector("#productFinalPrice").innerText = product.FinalPrice;
   document.querySelector("#productColorName").innerText =
