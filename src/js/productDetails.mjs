@@ -24,14 +24,14 @@ export default async function productDetails(productId) {
 
 
 function addToCart() {
-  let cartItems = getLocalStorage("so-cart");
-  //check if there are any content there
-  if (!cartItems) {
-    cartItems = [];
+  let cartContents = getLocalStorage("so-cart");
+  //check to see if there was anything there
+  if (!cartContents) {
+    cartContents = [];
   }
   // then add the current product to the list
-  cartItems.push(product);
-  setLocalStorage("so-cart", cartItems);
+  cartContents.push(product);
+  setLocalStorage("so-cart", cartContents);
 }
 
 
@@ -39,7 +39,7 @@ function renderProductDetails() {
   document.querySelector("#productName").innerText = product.Brand.Name;
   document.querySelector("#productNameWithoutBrand").innerText =
     product.NameWithoutBrand;
-  document.querySelector("#productImage").src = product.Image.PrimaryLarge;
+  document.querySelector("#productImage").src = product.Images.PrimaryLarge;
   document.querySelector("#productImage").alt = product.Name;
   document.querySelector("#productFinalPrice").innerText = product.FinalPrice;
   document.querySelector("#productColorName").innerText =
