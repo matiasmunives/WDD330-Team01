@@ -230,7 +230,29 @@ footer {
   padding: 1em;
 }
 
-/* Estilos para los botones de cantidad */
+/*Carolina Style for categories*/
+.category {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.category div {
+  flex: 1;
+  text-align: center;
+}
+
+.category img {
+  max-width: 100px;
+}
+
+.hero {
+  display: block; 
+  max-width: 100%;
+}
+
+/* Estilos para los botones de cantidad (Isaac Style)*/
 .quantity-controls {
   display: flex;
   align-items: center;
