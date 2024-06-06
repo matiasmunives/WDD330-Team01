@@ -1,5 +1,6 @@
 import { getLocalStorage, setLocalStorage, renderListWithTemplate } from "./utils.mjs";
 
+
 export default function ShoppingCart() {
   const outputEl = document.querySelector(".product-list");
 
