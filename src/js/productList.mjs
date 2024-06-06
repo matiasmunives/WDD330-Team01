@@ -23,5 +23,9 @@ export default async function productList(selector, category) {
 
   renderListWithTemplate(productCardTemplate, el, products);
 
+<<<<<<< HEAD
   document.querySelector(".title").innerHTML = category.toUpperCase();
+=======
+  renderListWithTemplate(productCardTemplate, el, products);
+>>>>>>> ecf48380e4eb86a9a95a391b1912ef02d30580ad
 }
