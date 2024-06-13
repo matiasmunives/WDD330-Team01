@@ -1,4 +1,12 @@
 function packageItems(items) {
+  const formData = new FormData(formElement),
+    convertedJSON = {};
+
+  formData.forEach(function (value, key) {
+    convertedJSON[key] = value;
+  });
+
+  return convertedJSON;
 }
 
 const checkoutProcess = {
@@ -17,6 +25,20 @@ const checkoutProcess = {
     },
   calculateItemSummary: function() {
     // calculate and display the total amount of the items in the cart, and the number of items.
+        let totalAmount = 0;
+        let totalItems = 0;
+
+        for (let item of this.list) {
+            totalAmount += item.price * item.quantity;
+            totalItems += item.quantity;
+        }
+
+        // Update the itemTotal property
+        this.itemTotal = totalAmount;
+
+        // Update the UI with the total amount and the number of items
+        document.getElementById("num-items").textContent = totalItems;
+        document.getElementById("cartTotal").textContent = "$" + totalAmount.toFixed(2);
     
   },
   calculateOrdertotal: function() {
