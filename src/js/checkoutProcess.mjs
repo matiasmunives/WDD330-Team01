@@ -56,7 +56,7 @@ const checkoutProcess = {
     document.getElementById("cartTotal").textContent = "$" + totalAmount.toFixed(2);
     
   },
-  calculateOrdertotal: function() {
+  calculateOrderTotal: function() {
     // calculate the shipping and tax amounts. Then use them to along with the cart total to figure out the order total
     this.shipping = 10 + (this.list.length - 1) * 2;
     this.tax = (this.itemTotal * 0.06).toFixed(2);
