@@ -33,6 +33,8 @@ export default function ShoppingCart() {
     const total = calculateCartTotal(cartItems);
     const cartFooter = document.querySelector(".cart-footer");
 
+    console.log("AFADSFAFDASF", cartItems)
+
     if (cartItems.length > 0) {
       cartFooter.classList.add("cart-has-items");
       updateCartTotal(total);
