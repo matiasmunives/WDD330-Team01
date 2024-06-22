@@ -25,3 +25,4 @@ export default async function productList(selector, category) {
 
   document.querySelector(".title").innerHTML = category.toUpperCase();
 }
+  
