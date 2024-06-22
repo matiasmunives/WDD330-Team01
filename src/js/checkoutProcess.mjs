@@ -22,38 +22,6 @@ function packageItems(items) {
 }
 
 const checkoutProcess = {
-
-    key: "",
-    outputSelector: "",
-    list: [],
-    itemTotal: 0,
-    shipping: 0,
-    tax: 0,
-    orderTotal: 0,
-    init: function (key, outputSelector) {
-        this.key = key;
-        this.outputSelector = outputSelector;
-        this.list = getLocalStorage(key);
-        this.calculateItemSummary();
-    },
-
-    calculateItemSummary: function () {
-      const summaryElement = document.querySelector(
-        this.outputSelector + " #cartTotal"
-      );
-      const itemNumElement = document.querySelector(
-        this.outputSelector + " #num-items"
-      );
-      itemNumElement.innerText = this.list.length;
-      // calculate the total of all the items in the cart
-      const amounts = this.list.map((item) => item.FinalPrice);
-      this.itemTotal = amounts.reduce((sum, item) => sum + item);
-      summaryElement.innerText = "$" + this.itemTotal;
-    },
-    
-  calculateOrderTotal: function() {
-    // calculate the shipping and tax amounts. Then use them to along with the cart total to figure out the order total
-
   key: "",
   outputSelector: "",
   list: [],
@@ -98,7 +66,6 @@ const checkoutProcess = {
     document.getElementById("cartTotal").textContent = "$" + totalAmount.toFixed(2);
   },
   calculateOrderTotal: function () {
-
     this.shipping = 10 + (this.list.length - 1) * 2;
     this.tax = (this.itemTotal * 0.06).toFixed(2);
     this.orderTotal = (
@@ -117,7 +84,6 @@ const checkoutProcess = {
     document.querySelector(this.outputSelector + " #orderTotal").innerText = "$" + parseFloat(this.orderTotal).toFixed(2);
   },
   checkout: async function (form) {
-
     const json = formDataToJSON(form);
     json.orderDate = new Date();
     json.orderTotal = this.orderTotal;
@@ -126,13 +92,7 @@ const checkoutProcess = {
     json.items = packageItems(this.list);
     try {
       const res = await checkout(json);
-
-      // Redirect to success page upon successful checkout
       window.location.href = '../checkout/success.html';
-      console.log(res);
-
-      window.location.href = '../checkout/success.html';
-
     } catch (err) {
       console.log(err);
     }
