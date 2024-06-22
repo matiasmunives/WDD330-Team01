@@ -248,7 +248,7 @@ footer {
 }
 
 .hero {
-  display: block; 
+  display: block;
   max-width: 100%;
 }
 
@@ -275,4 +275,3 @@ footer {
 .cart-card__quantity {
   margin: 0 5px;
 }
-
