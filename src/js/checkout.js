@@ -1,27 +1,19 @@
 import { loadHeaderFooter } from "./utils.mjs";
 import checkoutProcess from "./checkoutProcess.mjs";
 
+// Load header and footer
 loadHeaderFooter();
 
+// Initialize checkout process
 checkoutProcess.init("so-cart", ".checkout-summary");
 
-document
-  .querySelector("#zip")
-  .addEventListener(
-    "blur",
-    checkoutProcess.calculateOrderTotal.bind(checkoutProcess)
-  );
-
-// this is how it would look if we listen for the submit on the form
-document.forms["checkout-form"].addEventListener("submit", (e) => {
-  e.preventDefault();
-  // e.target would contain our form in this case
-  checkoutProcess.checkout(e.target);
+// Calculate order total on ZIP code blur event
+document.querySelector("#zip").addEventListener("blur", () => {
+  checkoutProcess.calculateOrderTotal();
 });
 
-//listening for click on the button
-//document.querySelector("#checkoutSubmit").addEventListener//("click", (e) => {
-//  e.preventDefault();
-
-// checkoutProcess.checkout(document.forms['checkout']);
-// });
+// Handle form submit event
+document.forms["checkout-form"].addEventListener("submit", (e) => {
+  e.preventDefault();
+  checkoutProcess.checkout(e.target);
+});
