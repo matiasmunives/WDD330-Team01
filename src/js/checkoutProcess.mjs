@@ -38,24 +38,21 @@ const checkoutProcess = {
         this.list = getLocalStorage(key);
         this.calculateItemSummary();
     },
-  calculateItemSummary: function() {
-    // calculate and display the total amount of the items in the cart, and the number of items.
-    let totalAmount = 0;
-    let totalItems = 0;
 
-    for (let item of this.list) {
-        totalAmount += item.price * item.quantity;
-        totalItems += item.quantity;
-    }
-
-    // Update the itemTotal property
-    this.itemTotal = totalAmount;
-
-    // Update the UI with the total amount and the number of items
-    document.getElementById("num-items").textContent = totalItems;
-    document.getElementById("cartTotal").textContent = "$" + totalAmount.toFixed(2);
+    calculateItemSummary: function () {
+      const summaryElement = document.querySelector(
+        this.outputSelector + " #cartTotal"
+      );
+      const itemNumElement = document.querySelector(
+        this.outputSelector + " #num-items"
+      );
+      itemNumElement.innerText = this.list.length;
+      // calculate the total of all the items in the cart
+      const amounts = this.list.map((item) => item.FinalPrice);
+      this.itemTotal = amounts.reduce((sum, item) => sum + item);
+      summaryElement.innerText = "$" + this.itemTotal;
+    },
     
-  },
   calculateOrderTotal: function() {
     // calculate the shipping and tax amounts. Then use them to along with the cart total to figure out the order total
     this.shipping = 10 + (this.list.length - 1) * 2;
