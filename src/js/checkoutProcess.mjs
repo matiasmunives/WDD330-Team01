@@ -78,6 +78,7 @@ const checkoutProcess = {
 
   
   checkout: async function (form) {
+
     const json = formDataToJSON(form);
     // add totals, and item details
     json.orderDate = new Date();
@@ -88,6 +89,8 @@ const checkoutProcess = {
     console.log(json);
     try {
       const res = await checkout(json);
+      // Redirect to success page upon successful checkout
+      window.location.href = '../checkout/success.html';
       console.log(res);
     } catch (err) {
       console.log(err);
