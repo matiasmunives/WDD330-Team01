@@ -77,7 +77,10 @@ export async function loadHeaderFooter() {
     renderWithTemplate(footerTemplate, footerElement);
 } 
 
-
+//alertMessage 
+export function alertMessage(message) {
+  alert(message);
+}
 
 
 
