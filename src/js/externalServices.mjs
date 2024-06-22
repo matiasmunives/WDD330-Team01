@@ -1,4 +1,4 @@
-const baseURL = "http://server-nodejs.cit.byui.edu:3000/";
+const baseURL = import.meta.env.VITE_SERVER_URL;
 
 function convertToJson(res) {
   if (res.ok) {
@@ -9,12 +9,19 @@ function convertToJson(res) {
 }
 
 export async function getProductsByCategory(category) {
-  const response = await fetch(baseURL + `products/search/${category}`);
+
+  console.log("getProductsByCategory aaa")
+
+  console.log(`${baseURL}products/search/${category}`)
+
+  const response = await fetch(`${baseURL}products/search/${category}`);
+  console.log("RESPONSE", response)
   const data = await convertToJson(response);
   return data.Result;
 }
 
 export async function findProductById(id) {
+  console.log("findProductById aaa")
   const response = await fetch(baseURL + `product/${id}`);
   const product = await convertToJson(response);
   return product.Result;
