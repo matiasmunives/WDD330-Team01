@@ -1,11 +1,10 @@
 const baseURL = import.meta.env.VITE_SERVER_URL;
 
-async function convertToJson(res) {
-  const jsonResponse = await res.json();
+function convertToJson(res) {
   if (res.ok) {
-    return jsonResponse;
+    return res.json();
   } else {
-    throw { name: 'servicesError', message: jsonResponse };
+    throw new Error("Bad Response");
   }
 }
 
@@ -21,7 +20,6 @@ export async function findProductById(id) {
   const product = await convertToJson(response);
   return product.Result;
 }
-
 export async function checkout(payload) {
   const options = {
     method: "POST",
