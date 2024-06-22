@@ -78,8 +78,6 @@ const checkoutProcess = {
     tax.innerText = "$" + this.tax;
     orderTotal.innerText = "$" + this.orderTotal;
   },
-
-  
   checkout: async function (form) {
     const json = formDataToJSON(form);
     // add totals, and item details
@@ -91,11 +89,12 @@ const checkoutProcess = {
     console.log(json);
     try {
       const res = await checkout(json);
+      window.location.href = '../checkout/success.html';
       console.log(res);
     } catch (err) {
       console.log(err);
     }
   },
 };
- 
+
 export default checkoutProcess;
