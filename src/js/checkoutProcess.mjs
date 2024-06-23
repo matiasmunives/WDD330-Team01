@@ -44,7 +44,7 @@ const checkoutProcess = {
     for (let item of this.list) {
       console.log("Processing item:", item); // Log each item
 
-      if (item.hasOwnProperty('FinalPrice') && item.hasOwnProperty('quantity')) {
+      if (item.hasOwnProperty("FinalPrice") && item.hasOwnProperty("quantity")) {
         const price = parseFloat(item.FinalPrice);
         const quantity = parseInt(item.quantity);
 
@@ -92,7 +92,7 @@ const checkoutProcess = {
     json.items = packageItems(this.list);
     try {
       const res = await checkout(json);
-      window.location.href = '../checkout/success.html';
+      window.location.href = "../checkout/success.html";
     } catch (err) {
       console.log(err);
     }
