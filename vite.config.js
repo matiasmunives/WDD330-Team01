@@ -20,6 +20,8 @@ export default defineConfig({
         product_list: resolve(__dirname, "src/product-list/index.html"),
         header: resolve(__dirname, "src/partials/header.html"),
         footer: resolve(__dirname, "src/partials/footer.html"),
+        login: resolve(__dirname, "src/login/index.html"),
+        orders: resolve(__dirname, "src/orders/index.html"),
 
       },
     },
