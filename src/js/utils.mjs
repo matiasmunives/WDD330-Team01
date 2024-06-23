@@ -78,7 +78,10 @@ export async function loadHeaderFooter() {
 } 
 
 
-
+//alertMessage 
+export function alertMessage(message) {
+  alert(message);
+}
 
 
 

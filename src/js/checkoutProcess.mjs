@@ -33,7 +33,6 @@ const checkoutProcess = {
     this.key = key;
     this.outputSelector = outputSelector;
     this.list = getLocalStorage(key) || [];
-    console.log("Loaded items from local storage:", this.list); // Log the loaded items
     this.calculateItemSummary();
     this.calculateOrderTotal();
   },
@@ -42,13 +41,10 @@ const checkoutProcess = {
     let totalItems = 0;
 
     for (let item of this.list) {
-      console.log("Processing item:", item); // Log each item
 
       if (item.hasOwnProperty("FinalPrice") && item.hasOwnProperty("quantity")) {
         const price = parseFloat(item.FinalPrice);
         const quantity = parseInt(item.quantity);
-
-        console.log("Parsed price:", price, "Parsed quantity:", quantity); // Log parsed values
 
         if (!isNaN(price) && !isNaN(quantity)) {
           totalAmount += price * quantity;
@@ -100,5 +96,3 @@ const checkoutProcess = {
 };
 
 export default checkoutProcess;
-
-
