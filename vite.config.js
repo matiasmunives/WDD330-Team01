@@ -22,7 +22,6 @@ export default defineConfig({
         footer: resolve(__dirname, "src/partials/footer.html"),
         login: resolve(__dirname, "src/login/index.html"),
         orders: resolve(__dirname, "src/orders/index.html"),
-
       },
     },
   },
